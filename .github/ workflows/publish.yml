@@ -12,12 +12,12 @@ jobs:
     - name: Assignment1 Big Data
       uses: docker/assignment1@v1
       with:
-        registry: ghcr.io
+        registry: docker.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Assignment1 Big Data Docker image
       run: |
-        docker build . --tag ghcr.io/nouranhady/assignment1-image:latest
-        docker run ghcr.io/nouranhady/assignment1-image:latest
-        docker push ghcr.io/nouranhady/assignment1-image:latest
+        docker build . --tag docker.io/nouranhady/assignment1-image:latest
+        docker run docker.io/nouranhady/assignment1-image:latest
+        docker push docker.io/nouranhady/assignment1-image:latest
