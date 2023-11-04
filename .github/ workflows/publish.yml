@@ -7,17 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Check out code
+      uses: actions/checkout@v2
 
-    - name: Assignment1 Big Data
-      uses: docker/assignment1@v1
-      with:
-        registry: docker.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Assignment1 Big Data Docker image
+    - name: Build and Push Docker Image
       run: |
-        docker build . --tag docker.io/nouranhady/assignment1-image:latest
-        docker run docker.io/nouranhady/assignment1-image:latest
+        docker build . -t docker.io/nouranhady/assignment1-image2:latest
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
         docker push docker.io/nouranhady/assignment1-image:latest
