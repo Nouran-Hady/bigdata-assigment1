@@ -1,0 +1,21 @@
+name: publish
+
+on: [push]
+
+jobs:
+  assignment1-image:
+    runs-on: ubuntu-latest
+
+    steps:
+  ` - name: Build and Push Docker Image
+        uses: nouran-hady/assignment1-image2@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.nouran-hady }}
+          password: ${{ secrets.PAT }}
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build . -t docker.io/nouranhady/assignment1-image2:latest
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+        docker push docker.io/nouranhady/assignment1-image:latest
